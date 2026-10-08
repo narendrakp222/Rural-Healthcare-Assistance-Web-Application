@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Manage Health Articles</h1><span>Awareness content</span></div>
+  <div class="row g-4">
+    <div class="col-lg-4"><form method="post" enctype="multipart/form-data" class="panel">{{ form.hidden_tag() }}{% for field in [form.title, form.category, form.summary] %}<div class="mb-3">{{ field.label(class="form-label") }}{{ field(class="form-control") }}</div>{% endfor %}<div class="mb-3">{{ form.content.label(class="form-label") }}{{ form.content(class="form-control", rows=5) }}</div><div class="mb-3">{{ form.image.label(class="form-label") }}{{ form.image(class="form-control") }}</div><div class="form-check mb-3">{{ form.published(class="form-check-input") }} {{ form.published.label(class="form-check-label") }}</div>{{ form.submit(class="btn btn-primary w-100") }}</form></div>
+    <div class="col-lg-8"><div class="panel table-responsive"><table class="table"><thead><tr><th>Title</th><th>Category</th><th>Published</th><th></th></tr></thead><tbody>{% for article in articles %}<tr><td>{{ article.title }}</td><td>{{ article.category }}</td><td>{{ "Yes" if article.published else "No" }}</td><td><form method="post" action="{{ url_for('admin.delete_article', article_id=article.id) }}">{{ form.csrf_token }}<button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button></form></td></tr>{% else %}<tr><td colspan="4">No articles.</td></tr>{% endfor %}</tbody></table></div></div>
+  </div>
+</section>
+{% endblock %}
+

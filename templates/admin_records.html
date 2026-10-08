@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>All Medical Records</h1><span>Patient history overview</span></div>
+  <div class="panel table-responsive"><table class="table"><thead><tr><th>Patient</th><th>Disease</th><th>Doctor</th><th>Hospital</th><th>Date</th></tr></thead><tbody>{% for record in records %}<tr><td>{{ record.user.name }}</td><td>{{ record.disease }}</td><td>{{ record.doctor }}</td><td>{{ record.hospital }}</td><td>{{ record.date }}</td></tr>{% else %}<tr><td colspan="5">No records.</td></tr>{% endfor %}</tbody></table></div>
+</section>
+{% endblock %}
+

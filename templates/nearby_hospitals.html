@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Nearby Hospitals</h1><span>Local access directory</span></div>
+  <div class="row g-4">{% for hospital in hospitals %}<div class="col-md-6"><div class="panel hospital-card"><h2>{{ hospital.name }}</h2><p>{{ hospital.address }}</p><p><i class="fa-solid fa-phone me-2"></i>{{ hospital.contact_number }}</p><a class="btn btn-outline-primary" target="_blank" href="{{ hospital.map_url or ('https://www.google.com/maps/search/' ~ hospital.name) }}"><i class="fa-solid fa-map-location-dot me-2"></i>Open Map</a></div></div>{% else %}<p class="text-muted">No hospitals added.</p>{% endfor %}</div>
+</section>
+{% endblock %}
+

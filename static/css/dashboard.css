@@ -1,0 +1,91 @@
+.dashboard-hero {
+  background: linear-gradient(135deg, #0b77c5, #18a058);
+  color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+}
+
+.progress-ring {
+  width: 7rem;
+  height: 7rem;
+  border: 10px solid rgba(255, 255, 255, 0.32);
+  border-top-color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.35rem;
+  flex: 0 0 auto;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.quick-actions a {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.quick-actions i {
+  color: var(--primary);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.15rem;
+}
+
+.stat-card span {
+  color: var(--muted);
+  display: block;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 2.2rem;
+  color: var(--primary);
+}
+
+.contact-card,
+.hospital-card,
+.article-card {
+  height: 100%;
+}
+
+@media (max-width: 575px) {
+  .dashboard-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+

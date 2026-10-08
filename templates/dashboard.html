@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | RuralCare{% endblock %}
+{% block content %}
+<section class="container py-4">
+  <div class="dashboard-hero">
+    <div>
+      <p class="mb-1">Welcome, {{ current_user.name }}</p>
+      <h1>Your health command center</h1>
+    </div>
+    <div class="progress-ring">{{ profile.completion_percentage() }}%</div>
+  </div>
+  <div class="quick-actions">
+    <a href="{{ url_for('user.profile') }}"><i class="fa-solid fa-id-card"></i>Profile</a>
+    <a href="{{ url_for('user.medical_records') }}"><i class="fa-solid fa-file-medical"></i>Records</a>
+    <a href="{{ url_for('user.medicine_reminders') }}"><i class="fa-solid fa-pills"></i>Medicines</a>
+    <a href="{{ url_for('user.appointments') }}"><i class="fa-solid fa-calendar-check"></i>Appointments</a>
+    <a href="{{ url_for('user.emergency_contacts') }}"><i class="fa-solid fa-phone-volume"></i>Contacts</a>
+  </div>
+  <div class="row g-4 mt-1">
+    <div class="col-lg-6">{% include "partials_list.html" with context %}</div>
+    <div class="col-lg-6">
+      <div class="panel h-100">
+        <h2>Health Tips</h2>
+        {% for article in articles %}
+          <div class="list-row"><strong>{{ article.title }}</strong><span>{{ article.summary }}</span></div>
+        {% else %}<p class="text-muted">No health articles yet.</p>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

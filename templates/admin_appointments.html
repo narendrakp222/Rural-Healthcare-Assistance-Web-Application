@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>All Appointments</h1><div class="btn-group">{% for s in ["", "Scheduled", "Completed", "Cancelled"] %}<a class="btn btn-sm btn-outline-primary {% if status==s %}active{% endif %}" href="{{ url_for('admin.appointments', status=s) }}">{{ s or "All" }}</a>{% endfor %}</div></div>
+  <div class="panel table-responsive"><table class="table"><thead><tr><th>Patient</th><th>Doctor</th><th>Hospital</th><th>Date</th><th>Purpose</th><th>Status</th></tr></thead><tbody>{% for appt in appointments %}<tr><td>{{ appt.user.name }}</td><td>{{ appt.doctor }}</td><td>{{ appt.hospital }}</td><td>{{ appt.date }}</td><td>{{ appt.purpose }}</td><td>{{ appt.status }}</td></tr>{% else %}<tr><td colspan="6">No appointments.</td></tr>{% endfor %}</tbody></table></div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Admin Dashboard</h1><span>Management overview</span></div>
+  <div class="stats-grid">
+    {% for label, value in stats.items() %}
+      <div class="stat-card"><span>{{ label|title }}</span><strong>{{ value }}</strong></div>
+    {% endfor %}
+  </div>
+  <div class="row g-4 mt-1">
+    <div class="col-lg-7"><div class="panel"><h2>Recent Appointments</h2><table class="table"><thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Status</th></tr></thead><tbody>{% for appt in appointments %}<tr><td>{{ appt.user.name }}</td><td>{{ appt.doctor }}</td><td>{{ appt.date }}</td><td>{{ appt.status }}</td></tr>{% else %}<tr><td colspan="4">No appointments.</td></tr>{% endfor %}</tbody></table></div></div>
+    <div class="col-lg-5"><div class="panel"><h2>Feedback</h2>{% for item in feedback %}<div class="list-row"><strong>{{ item.name }}</strong><span>{{ item.message }}</span></div>{% else %}<p class="text-muted">No feedback.</p>{% endfor %}</div></div>
+  </div>
+</section>
+{% endblock %}
+

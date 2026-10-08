@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="badge text-bg-success mb-3">Community Service Project</span>
+      <h1>Rural Healthcare Assistance Web Application</h1>
+      <p>Manage patient profiles, medical records, medicine reminders, appointments, emergency contacts, and health awareness content from one responsive portal.</p>
+      <div class="d-flex gap-2 flex-wrap">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('auth.register') }}"><i class="fa-solid fa-user-plus me-2"></i>Start Patient Portal</a>
+        <a class="btn btn-outline-light btn-lg" href="{{ url_for('auth.login') }}"><i class="fa-solid fa-right-to-bracket me-2"></i>Login</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container py-5">
+  <div class="row g-4">
+    {% for icon, title, text in [
+      ("fa-notes-medical", "Digital Records", "Upload prescriptions and maintain medical history securely."),
+      ("fa-pills", "Medicine Reminders", "Track dosage schedules for morning, afternoon, and night."),
+      ("fa-truck-medical", "Emergency Ready", "Keep one-click contacts and nearby hospitals within reach.")
+    ] %}
+      <div class="col-md-4"><div class="feature-card"><i class="fa-solid {{ icon }}"></i><h3>{{ title }}</h3><p>{{ text }}</p></div></div>
+    {% endfor %}
+  </div>
+</section>
+<section class="container pb-5">
+  <div class="row g-4 align-items-stretch">
+    <div class="col-lg-7">
+      <div class="panel h-100">
+        <h2>Project Modules</h2>
+        <div class="module-grid">
+          {% for item in ["Authentication", "User Profile", "Medical Records", "Medicine Reminder", "Appointments", "Emergency Contacts", "Health Awareness", "Nearby Hospitals", "Admin Panel"] %}
+            <span><i class="fa-solid fa-circle-check"></i>{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="panel h-100">
+        <h2>Feedback</h2>
+        <p class="mb-0 text-muted">Demo users can submit feedback from the portal, and administrators can review it in the admin dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

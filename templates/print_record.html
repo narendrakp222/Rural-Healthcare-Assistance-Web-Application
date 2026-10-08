@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head no-print"><h1>Print Medical Record</h1><button class="btn btn-primary" onclick="window.print()"><i class="fa-solid fa-print me-2"></i>Print</button></div>
+  <div class="panel print-sheet">
+    <h1>{{ record.disease }}</h1>
+    <p><strong>Patient:</strong> {{ current_user.name }}</p>
+    <p><strong>Doctor:</strong> {{ record.doctor }}</p>
+    <p><strong>Hospital:</strong> {{ record.hospital }}</p>
+    <p><strong>Date:</strong> {{ record.date }}</p>
+    <hr>
+    <h2>Diagnosis</h2><p>{{ record.diagnosis or "Not provided" }}</p>
+    <h2>Prescription</h2><p>{{ record.prescription or "Not provided" }}</p>
+    <h2>Notes</h2><p>{{ record.notes or "Not provided" }}</p>
+  </div>
+</section>
+{% endblock %}
+

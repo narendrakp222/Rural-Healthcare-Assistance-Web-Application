@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Emergency Contacts</h1><span>One-click call support</span></div>
+  <div class="row g-4">
+    <div class="col-lg-4"><form method="post" class="panel"><h2>{{ "Edit Contact" if editing is defined else "Add Contact" }}</h2>{{ form.hidden_tag() }}{% for field in [form.name, form.relation, form.phone] %}<div class="mb-3">{{ field.label(class="form-label") }}{{ field(class="form-control") }}</div>{% endfor %}{{ form.submit(class="btn btn-primary w-100") }}</form></div>
+    <div class="col-lg-8"><div class="row g-3">{% for contact in contacts %}<div class="col-md-6"><div class="panel contact-card"><h2>{{ contact.name }}</h2><p>{{ contact.relation }}</p><a class="btn btn-success" href="tel:{{ contact.phone }}"><i class="fa-solid fa-phone me-2"></i>{{ contact.phone }}</a><div class="mt-2"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('user.edit_contact', contact_id=contact.id) }}">Edit</a> <form method="post" class="d-inline" action="{{ url_for('user.delete_contact', contact_id=contact.id) }}">{{ form.csrf_token }}<button class="btn btn-sm btn-outline-danger">Delete</button></form></div></div></div>{% else %}<p class="text-muted">No emergency contacts.</p>{% endfor %}</div></div>
+  </div>
+</section>
+{% endblock %}

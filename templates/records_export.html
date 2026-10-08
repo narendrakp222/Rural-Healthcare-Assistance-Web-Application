@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Medical Records Export</title></head>
+<body>
+  <h1>Medical Records Export</h1>
+  <p>Use your browser print dialog and choose "Save as PDF" to export this file as PDF.</p>
+  <table border="1" cellspacing="0" cellpadding="6">
+    <thead><tr><th>Disease</th><th>Doctor</th><th>Hospital</th><th>Date</th><th>Diagnosis</th><th>Prescription</th></tr></thead>
+    <tbody>
+      {% for record in records %}
+        <tr><td>{{ record.disease }}</td><td>{{ record.doctor }}</td><td>{{ record.hospital }}</td><td>{{ record.date }}</td><td>{{ record.diagnosis }}</td><td>{{ record.prescription }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

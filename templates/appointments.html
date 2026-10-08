@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Appointments</h1><span>Book and monitor visits</span></div>
+  <div class="row g-4">
+    <div class="col-lg-4"><form method="post" class="panel"><h2>{{ "Edit Appointment" if editing is defined else "Book Appointment" }}</h2>{{ form.hidden_tag() }}{% for field in [form.doctor, form.hospital, form.date, form.time, form.purpose, form.status] %}<div class="mb-3">{{ field.label(class="form-label") }}{{ field(class="form-control") }}</div>{% endfor %}{{ form.submit(class="btn btn-primary w-100") }}</form></div>
+    <div class="col-lg-8"><div class="panel table-responsive"><table class="table"><thead><tr><th>Doctor</th><th>Hospital</th><th>Date</th><th>Purpose</th><th>Status</th><th></th></tr></thead><tbody>
+      {% for appt in appointments %}<tr><td>{{ appt.doctor }}</td><td>{{ appt.hospital }}</td><td>{{ appt.date }} {{ appt.time.strftime("%H:%M") }}</td><td>{{ appt.purpose }}</td><td><span class="badge text-bg-info">{{ appt.status }}</span></td><td class="text-nowrap"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('user.edit_appointment', appointment_id=appt.id) }}"><i class="fa-solid fa-pen"></i></a> <form class="d-inline" method="post" action="{{ url_for('user.delete_appointment', appointment_id=appt.id) }}">{{ form.csrf_token }}<button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button></form></td></tr>{% else %}<tr><td colspan="6" class="text-muted">No appointments.</td></tr>{% endfor %}
+    </tbody></table></div></div>
+  </div>
+</section>
+{% endblock %}

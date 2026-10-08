@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Medicine Reminders</h1><span>Track daily dosage</span></div>
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <form method="post" class="panel">
+        <h2>{{ "Edit Medicine" if editing is defined else "Add Medicine" }}</h2>
+        {{ form.hidden_tag() }}
+        {% for field in [form.medicine_name, form.dosage, form.start_date, form.end_date] %}<div class="mb-3">{{ field.label(class="form-label") }}{{ field(class="form-control") }}</div>{% endfor %}
+        <div class="d-flex gap-3 mb-3">{{ form.morning(class="form-check-input") }} {{ form.morning.label }} {{ form.afternoon(class="form-check-input") }} {{ form.afternoon.label }} {{ form.night(class="form-check-input") }} {{ form.night.label }}</div>
+        {{ form.submit(class="btn btn-primary w-100") }}
+      </form>
+    </div>
+    <div class="col-lg-8"><div class="panel table-responsive"><table class="table"><thead><tr><th>Medicine</th><th>Dosage</th><th>Schedule</th><th>Dates</th><th></th></tr></thead><tbody>
+      {% for med in medicines %}<tr><td>{{ med.medicine_name }}</td><td>{{ med.dosage }}</td><td>{{ med.schedule_text() }}</td><td>{{ med.start_date }} to {{ med.end_date }}</td><td class="text-nowrap"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('user.edit_medicine', medicine_id=med.id) }}"><i class="fa-solid fa-pen"></i></a> <form class="d-inline" method="post" action="{{ url_for('user.delete_medicine', medicine_id=med.id) }}">{{ form.csrf_token }}<button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button></form></td></tr>{% else %}<tr><td colspan="5" class="text-muted">No reminders.</td></tr>{% endfor %}
+    </tbody></table></div></div>
+  </div>
+</section>
+{% endblock %}

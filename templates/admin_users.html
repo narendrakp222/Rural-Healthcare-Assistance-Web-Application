@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Manage Users</h1><form><input class="form-control" name="q" value="{{ search }}" placeholder="Search users"></form></div>
+  <div class="panel table-responsive"><table class="table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th></th></tr></thead><tbody>
+    {% for user in users %}<tr><td>{{ user.name }}</td><td>{{ user.email }}</td><td>{{ "Admin" if user.is_admin else "Patient" }}</td><td>{{ user.created_at.strftime("%d %b %Y") }}</td><td><form method="post" action="{{ url_for('admin.delete_user', user_id=user.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button></form></td></tr>{% else %}<tr><td colspan="5">No users.</td></tr>{% endfor %}
+  </tbody></table></div>
+</section>
+{% endblock %}
+

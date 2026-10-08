@@ -1,0 +1,16 @@
+<div class="panel h-100">
+  <h2>Upcoming Care</h2>
+  <h3>Medicines</h3>
+  {% for med in upcoming_medicines %}
+    <div class="list-row"><strong>{{ med.medicine_name }} - {{ med.dosage }}</strong><span>{{ med.schedule_text() }} until {{ med.end_date.strftime("%d %b %Y") }}</span></div>
+  {% else %}<p class="text-muted">No active medicine reminders.</p>{% endfor %}
+  <h3 class="mt-4">Appointments</h3>
+  {% for appt in appointments %}
+    <div class="list-row"><strong>{{ appt.doctor }} at {{ appt.hospital }}</strong><span>{{ appt.date.strftime("%d %b %Y") }} at {{ appt.time.strftime("%I:%M %p") }}</span></div>
+  {% else %}<p class="text-muted">No upcoming appointments.</p>{% endfor %}
+  <h3 class="mt-4">Recent Records</h3>
+  {% for record in records %}
+    <div class="list-row"><strong>{{ record.disease }}</strong><span>{{ record.hospital }} - {{ record.date.strftime("%d %b %Y") }}</span></div>
+  {% else %}<p class="text-muted">No medical records added.</p>{% endfor %}
+</div>
+

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-4">
+  <div class="page-head"><h1>Health Awareness</h1><div class="btn-group">{% for c in ["", "Tips", "Nutrition", "Hygiene", "First Aid"] %}<a class="btn btn-sm btn-outline-primary {% if category==c %}active{% endif %}" href="{{ url_for('user.health_articles', category=c) }}">{{ c or "All" }}</a>{% endfor %}</div></div>
+  <div class="row g-4">{% for article in articles %}<div class="col-md-6 col-lg-4"><article class="panel article-card"><span class="badge text-bg-success">{{ article.category }}</span><h2>{{ article.title }}</h2><p>{{ article.summary }}</p><p>{{ article.content }}</p></article></div>{% else %}<p class="text-muted">No articles available.</p>{% endfor %}</div>
+</section>
+{% endblock %}
+
